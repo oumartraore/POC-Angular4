@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 import { ROUTES } from './app.routes';
 
 import { AppComponent } from './app.component';
-import { EditUserComponent } from './edit-user/edit-user.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { AllUserComponent } from './all-user/all-user.component';
@@ -15,7 +14,6 @@ import { FooterComponent } from './layout/footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
-    EditUserComponent,
     AddUserComponent,
     UpdateUserComponent,
     AllUserComponent,
