@@ -13,9 +13,16 @@ export class AllUserComponent implements OnInit {
 	users: User[] = [];
 
 	constructor(private userServiceService: UserServiceService) { 
-		this.userServiceService.getAllUser()
+		/*this.userServiceService.getAllUser()
 			.then(results => this.users = results)
-			.catch(error => console.log(error));
+			.catch(error => console.log(error));*/
+
+
+		// Methode 2 :
+		this.userServiceService.getAllUser()
+			.subscribe(results => this.users = results,
+				error => console.log(error),
+				() => console.log("Finished"));
 	}
 
 	ngOnInit() {

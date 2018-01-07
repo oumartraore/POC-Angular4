@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
+import { Observable, Subscriber } from 'rxjs/Rx'
 
 
 @Injectable()
@@ -11,11 +12,12 @@ export class UserServiceService {
 
   	} 
 
-  	getAllUser(): Promise<User[]> {
-        /*if(!!this.users) {
-            console.log("Pourquoi ici ?");
-            return Promise.resolve(this.users);
-        }else {*/
+    // Méthode 1 : Avec les promises 
+  	getAllUser2(): Promise<User[]> {
+        //if(!!this.users) {
+            //console.log("Pourquoi ici ?");
+            //return Promise.resolve(this.users);
+        //}else {
             let i: number = 0;
             for(i = 0; i < 10; i++) {
                 let user1 : User = {
@@ -33,4 +35,25 @@ export class UserServiceService {
             });
         //}
   	}
+
+    // Méthode 2 : Avec les observables
+    getAllUser(): Observable<User[]> {
+        let i: number = 0;
+        for(i = 0; i < 10; i++) {
+            let user1 : User = {
+                id : i,
+                name : "OumarG " + i,
+                phone : "12345",
+                birthday : new Date()
+            };
+
+            this.users.push(user1);
+        }
+
+        return Observable.create(
+            (observer : Subscriber<User[]>) => {
+                observer.next(this.users);
+            }
+        );
+    }
 }
